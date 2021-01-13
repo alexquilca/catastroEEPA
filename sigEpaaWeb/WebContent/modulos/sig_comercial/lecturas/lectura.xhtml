@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<body onload="#{frmLectura.inicializarlectura()}">
+
+	<h:form>
+		<p:growl showDetail="true" sticky="true" />
+		<p:panel id="pnIngreso" header="INGRESO DE DATOS DE LECTURA">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Lectura Actual " />
+				<p:inputText value="#{frmLectura.objComLectura.lecturaActual}" />
+
+				<p:outputLabel value="Lectura Anterior " />
+				<p:inputText value="#{frmLectura.objComLectura.lecturaAnterior}" />
+
+				<p:outputLabel value="Consumo Actual " />
+				<p:inputText value="#{frmLectura.objComLectura.consumo}" />
+
+				<p:outputLabel value="Mes de la lectura" />
+				<p:inputText value="#{frmLectura.objComLectura.mes}" />
+
+				<p:outputLabel value="Año de la lectura" />
+				<p:inputText value="#{frmLectura.objComLectura.anio}" />
+			</p:panelGrid>
+			<p:commandButton value="INGRESAR"
+				actionListener="#{frmLectura.ingresarLectura() }" update="@form" />
+		</p:panel>
+	</h:form>
+</body>
+</html>
+

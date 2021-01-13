@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+
+<body onload="#{frmVisitas.inicializarvisita()}">
+
+	<h:form>
+		<p:growl showDetail="true" sticky="true" />
+		<p:panel id="pnIngreso" header="INGRESO DATOS DE LA VISITA">
+
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Hora de salida " />
+				<p:inputText value="#{frmVisitas.objComVisita.horaDeSalida}" />
+
+				<p:outputLabel value="Hora de llegada" />
+				<p:inputText value="#{frmVisitas.objComVisita.horaDeLlegada}" />
+
+				<p:outputLabel value="Tipo de la Visita " />
+				<p:selectOneMenu value="#{frmPredio.objComPredio.tipoDeUbicacion}">
+					<f:selectItem itemValue="" itemLabel="" />
+					<f:selectItem itemValue="Lectura" itemLabel="Lectura" />
+					<f:selectItem itemValue="Inspeccion" itemLabel="Inspeccion" />
+					<f:selectItem itemValue="Corte" itemLabel="Corte" />
+					<f:selectItem itemValue="Reconexión " itemLabel="Reconexión" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="longitud" />
+				<p:inputText value="#{frmVisitas.objComVisita.longitud}" />
+
+				<p:outputLabel value="latitud" />
+				<p:inputText value="#{frmVisitas.objComVisita.latitud}" />
+
+				<p:outputLabel value="fotografia" />
+				<p:inputText value="#{frmVisitas.objComVisita.fotografia}" />
+
+				<p:outputLabel value="Observacion" />
+				<p:textEditor value="#{frmVisitas.objComVisita.observacion}" />
+
+
+			</p:panelGrid>
+			<p:commandButton value="INGRESAR"
+				actionListener="#{frmVisitas.ingresarVisita()}" update="@form" />
+		</p:panel>
+	</h:form>
+</body>
+</html>

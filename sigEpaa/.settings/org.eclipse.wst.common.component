@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="sigEpaa">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="sigEpaaEJB.jar" deploy-path="/" handle="module:/resource/sigEpaaEJB/sigEpaaEJB">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sigEpaaWeb.war" deploy-path="/" handle="module:/resource/sigEpaaWeb/sigEpaaWeb">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="DS_Comercializacion.jar" deploy-path="/" handle="module:/resource/DS_Comercializacion/DS_Comercializacion">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

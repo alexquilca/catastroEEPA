@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="DS_Comercializacion">
+		<jta-data-source>java:/DS_Comercializacion</jta-data-source>
+		<class>sigepaa.comercializacion.model.dao.entities.ComAcometida</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComAtencionAlCliente</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComCliente</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComClientePredio</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComCorte</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComGrupoVulnerable</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComInspeccione</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComLectura</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComMedidor</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComModeloMedidor</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComPredio</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComPredioServiciosBasico</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComReconexion</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComServiciosBasico</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComTarifa</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComTelefonoUsuario</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComTipoVisita</class>
+		<class>sigepaa.comercializacion.model.dao.entities.ComVisita</class>
+	</persistence-unit>
+</persistence>

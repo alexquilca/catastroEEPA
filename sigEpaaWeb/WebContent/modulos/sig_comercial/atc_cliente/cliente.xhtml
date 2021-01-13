@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<body onload="#{frmCliente.inicializarcliente()}">
+	<h:form id="principal">
+		<div align="center">
+			<p:growl showDetail="true" sticky="true" />
+			<p:panel id="pnIngreso" header="INGRESO DE CLIENTES" collapsed="true"
+				toggleable="true">
+				<p:commandButton value="Buscar Cédula"
+					actionListener="#{frmCliente.buscarPersonaByCedula()}" update=":principal" />
+				<p:inputText value="#{frmCliente.cedulaBuscar}" />
+				<p:panelGrid columns="4" styleClass="ui-noborder">
+					<p:outputLabel value="Grupo Vulnerable" />
+					<p:selectOneMenu
+						value="#{frmCliente.objComCliente.comGrupoVulnerable.id}">
+						<f:selectItem itemLabel="Seleccione Grupo"
+							noSelectionOption="true" />
+						<f:selectItems value="#{frmCliente.lstSelectGrupoVulnerable()}" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Tipo Identificacion" />
+					<p:selectOneMenu
+						value="#{frmCliente.objComCliente.tipoIdentificacion}">
+						<f:selectItem itemValue="" itemLabel="" />
+						<f:selectItem itemValue="CEDULA " itemLabel="CEDULA " />
+						<f:selectItem itemValue="RUC" itemLabel="RUC" />
+						<f:selectItem itemValue="PASAPORTE " itemLabel="PASAPORTE " />
+					</p:selectOneMenu>
+					<p:outputLabel value="Identificacion" />
+					<p:inputMask mask="9999999999"
+						value="#{frmCliente.objComCliente.identificacion}" />
+					<p:outputLabel value="Nombre" />
+					<p:inputText value="#{frmCliente.objComCliente.nombre}" />
+					<p:outputLabel value="Apellido" />
+					<p:inputText value="#{frmCliente.objComCliente.apellido}" />
+					<p:outputLabel value="Fecha de nacimiento" />
+					<p:calendar mask="99/99/9999"
+						value="#{frmCliente.objComCliente.fechaDeNacimiento}"
+						pattern="dd/MM/yyyy" />
+					<p:outputLabel value="Direccion" />
+					<p:inputText value="#{frmCliente.objComCliente.direccion}" />
+					<p:outputLabel value="Correo electronico" />
+					<p:inputText value="#{frmCliente.objComCliente.correoElectronico}" />
+					<p:outputLabel value="Fecha de defuncion" />
+					<p:calendar value="#{frmCliente.objComCliente.fechaDeDefuncion}"
+						pattern="dd/MM/yyyy" mask="99/99/9999" />
+				</p:panelGrid>
+
+				<p:panel id="pnlTelefonos" header="Telefonos">
+					<p:panelGrid columns="9" styleClass="ui-noborder">
+						<p:outputLabel value="Tipo" />
+						<p:selectOneMenu value="#{frmCliente.objComTelefonoUsuario.tipo}">
+							<f:selectItem itemLabel="Seleccione Tipo"
+								noSelectionOption="true" />
+							<f:selectItem itemLabel="Convencinal" itemValue="Convencinal" />
+							<f:selectItem itemLabel="Móvil" itemValue="Convencinal" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Numero" />
+						<p:inputText value="#{frmCliente.objComTelefonoUsuario.numero}" />
+						<p:outputLabel value="Operadora" />
+						<p:selectOneMenu
+							value="#{frmCliente.objComTelefonoUsuario.operadora}">
+							<f:selectItem itemLabel="Seleccione Operadora"
+								noSelectionOption="true" />
+							<f:selectItem itemLabel="Claro" itemValue="Claro" />
+							<f:selectItem itemLabel="Movistar" itemValue="Movistar" />
+							<f:selectItem itemLabel="CNT" itemValue="CNT" />
+							<f:selectItem itemLabel="Twenty" itemValue="Twenty" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Principal" />
+						<p:selectOneMenu
+							value="#{frmCliente.objComTelefonoUsuario.principal}">
+							<f:selectItem itemLabel="Si" itemValue="1" />
+							<f:selectItem itemLabel="No" itemValue="0" />
+						</p:selectOneMenu>
+						<p:commandButton icon="ui-icon-plus"
+							actionListener="#{frmCliente.ingresarTelefonoCliente()}"
+							update="@form" />
+					</p:panelGrid>
+					<p:dataTable id="tblTelefonos"
+						emptyMessage="No existen números ingresados"
+						value="#{frmCliente.objComCliente.comTelefonoUsuarios}"
+						var="telefono">
+						<p:column headerText="Tipo">
+							<p:outputLabel value="#{telefono.tipo}" />
+						</p:column>
+						<p:column headerText="Operadora">
+							<p:outputLabel value="#{telefono.operadora}" />
+						</p:column>
+						<p:column headerText="Número">
+							<p:outputLabel value="#{telefono.numero}" />
+						</p:column>
+						<p:column headerText="Principal">
+							<p:outputLabel value="#{telefono.principal}" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+
+				<p:commandButton value="INGRESAR"
+					actionListener="#{frmCliente.ingresarCliente()}" update="@form" />
+			</p:panel>
+			 
+		</div>
+	</h:form>
+	<h:form id="datos">
+		<p:panel header="DATOS INGRESADOS">
+			<p:dataTable value="#{frmCliente.lstComCliente}" var="cliente">
+				<p:column headerText="Tipo de Identificacion">
+					<p:outputLabel value="#{cliente.tipoIdentificacion}" />
+				</p:column>
+
+				<p:column headerText="identificacion">
+					<p:outputLabel value="#{cliente.identificacion}" />
+				</p:column>
+
+				<p:column headerText="Nombre">
+					<p:outputLabel value="#{cliente.nombre}" />
+				</p:column>
+
+				<p:column headerText="Apellido">
+					<p:outputLabel value="#{cliente.apellido}" />
+				</p:column>
+
+				<p:column headerText="Direccion">
+					<p:outputLabel value="#{cliente.direccion}" />
+				</p:column>
+
+				<p:column headerText="Fecha de Nacimiento">
+					<p:outputLabel value="#{cliente.fechaDeNacimiento}" />
+				</p:column>
+
+				<p:column headerText="Fecha de Defuncion">
+					<p:outputLabel value="#{cliente.fechaDeDefuncion}" />
+				</p:column>
+
+				<p:column headerText="Correo electronico">
+					<p:outputLabel value="#{cliente.correoElectronico}" />
+				</p:column>
+
+				<p:column headerText="Grupo Vulnerable">
+					<p:outputLabel value="#{cliente.comGrupoVulnerable}" />
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+</body>
+</html>

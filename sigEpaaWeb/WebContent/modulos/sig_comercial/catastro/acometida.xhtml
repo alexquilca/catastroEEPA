@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<body onload="#{frmAcometida.inicializaracometida()}">
+	<h:form>
+		<p:growl showDetail="true" sticky="true" />
+		<p:panel id="pnIngreso" header="INGRESO DE DATOS ACOMETIDA">
+
+			<p:panelGrid columns="2" styleClass="ui-noborder">
+				<p:outputLabel value="Sector" />
+				<p:inputText value="#{frmAcometida.objComAcometida.sector}" />
+				<p:outputLabel value="Cuenta" />
+				<p:panelGrid columns="2" >
+				<p:outputLabel value="#{frmAcometida.objComAcometida.cuenta}" />
+				<p:commandButton value="Buscar" actionListener="#{frmAcometida.buscarUltimaSecuenciaSector()}" update="@form" />
+				</p:panelGrid>
+				<p:outputLabel value="Parroquia" />
+				<p:inputText value="#{frmAcometida.objComAcometida.parroquia}" />
+				<p:outputLabel value="Barrio" />
+				<p:inputText value="#{frmAcometida.objComAcometida.barrio}" />
+			</p:panelGrid>
+			
+			
+			
+			
+			
+			<p:commandButton value="INGRESAR"
+				actionListener="#{frmAcometida.ingresarAcometida()}" update="@form" />
+		</p:panel>
+	</h:form>
+</body>
+</html>

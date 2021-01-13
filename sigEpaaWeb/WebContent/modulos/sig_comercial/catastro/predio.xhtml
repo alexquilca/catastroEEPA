@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body onload="#{frmPredio.inicializarpredio()}">
+	<h:form>
+		<p:growl showDetail="true" sticky="true" />
+		<p:panel id="pnIngreso" header="NUEVO PREDIO">
+			<p:panel id="pnPersona" header="Datos Persona">
+				<p:panelGrid columns="2" styleClass="ui-noborder">
+					<p:outputLabel value="Buscar Persona " />
+					<p:panelGrid columns="3" styleClass="ui-noborder">
+						<p:inputText value="#{frmPredio.objComClientePredio.comCliente.identificacion}" />
+						<p:commandButton actionListener="#{frmPredio.buscarPersona()}" update="@form" value="Buscar" />
+						<p:commandButton value="Nuevo" />
+					</p:panelGrid>
+				</p:panelGrid>
+				<p:panelGrid columns="4" styleClass="ui-noborder" rendered="#{frmPredio.panelPersona}" >  
+					<p:outputLabel value="Cédula"/>
+					<p:outputLabel value="#{frmPredio.objComClientePredio.comCliente.identificacion}"/>
+					<p:outputLabel value="Grupo Vulnerable"/>
+					<p:outputLabel value="#{frmPredio.objComClientePredio.comCliente.comGrupoVulnerable.nombre}"/>
+					<p:outputLabel value="Nombres"/>
+					<p:outputLabel value="#{frmPredio.objComClientePredio.comCliente.nombre}"/>
+					<p:outputLabel value="Apellidos"/>
+					<p:outputLabel value="#{frmPredio.objComClientePredio.comCliente.apellido}"/>
+					<p:outputLabel value="Dirección"/>
+					<p:outputLabel value="#{frmPredio.objComClientePredio.comCliente.direccion}"/>
+					<p:outputLabel value="Correo Electrónico"/>
+					<p:outputLabel value="#{frmPredio.objComClientePredio.comCliente.correoElectronico}"/>
+				</p:panelGrid>
+			</p:panel>
+			<p:panel id="pnPredio" header="Datos Predio" rendered="#{frmPredio.panelPersona}">
+				<p:panelGrid columns="2" styleClass="ui-noborder">
+					<p:outputLabel value="Dirección" />
+					<p:inputText value="#{frmPredio.objComPredio.direccion}" />
+					<p:outputLabel value="Numero de casa" />
+					<p:inputText value="#{frmPredio.objComPredio.numeroDeCasa}" />
+					<p:outputLabel value="Tipo de ubicación" />
+					<p:selectOneMenu value="#{frmPredio.objComPredio.tipoDeUbicacion}">
+						<f:selectItem itemValue="" itemLabel="" />
+						<f:selectItem itemValue="URBANO" itemLabel="URBANO " />
+
+						<f:selectItem itemValue="RURAL" itemLabel="RURAL" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Tipo de predio" />
+					<p:selectOneMenu value="#{frmPredio.objComPredio.tipoPropiedad}">
+						<f:selectItem itemValue="" itemLabel="" />
+						<f:selectItem itemValue="PARTICULAR" itemLabel="PARTICULAR" />
+						<f:selectItem itemValue="PUBLICO " itemLabel="PUBLICO " />
+						<f:selectItem itemValue="GAD MUNICIPAL PÚBLICO "
+							itemLabel="GAD MUNICIPAL PÚBLICO " />
+						<f:selectItem itemValue="GAD NACIONAL" itemLabel="GAD NACIONAL " />
+						<f:selectItem itemValue=" MIXTO" itemLabel=" MIXTO" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Referencia" />
+					<p:textEditor value="#{frmPredio.objComPredio.referencia}" />
+					<p:outputLabel value="Cuenta con Servicios Básicos" />
+					<p:panelGrid columns="2" styleClass="ui-noborder">
+						<p:selectOneMenu value="#{frmPredio.objserServiciosBasico.id}">
+							<f:selectItem itemLabel="seleccion de servicio basico "
+								noSelectionOption="true" />
+							<f:selectItem itemValue="2" itemLabel="SERVICIO AGUA POTABLE" />
+							<f:selectItem itemValue="1" itemLabel="ALCANTARILLADO" />
+						</p:selectOneMenu>
+						<p:commandButton icon="ui-icon-plus"
+							actionListener="#{frmPredio.agregarServicioBasico()}"
+							update="@form:serBasicos" />
+					</p:panelGrid>
+					<p:outputLabel value="servicios ingresados" />
+					<p:dataTable id="serBasicos"
+						value="#{frmPredio.objComPredio.comPredioServiciosBasicos}"
+						var="serPre">
+						<p:column headerText="Servicio Basico">
+							<p:outputLabel value="#{serPre.comServiciosBasico.nombre}" />
+						</p:column>
+					</p:dataTable>
+					<p:outputLabel value="Tipo" />
+					<p:selectOneMenu value="#{frmPredio.objComClientePredio.tipo}" >
+						<f:selectItem itemValue="Propietario" itemLabel="Propietario" />
+						<f:selectItem itemValue="Arendatario" itemLabel="Arendatario" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+			</p:panel>
+			<p:commandButton value="INGRESAR" rendered="#{frmPredio.panelPersona}"
+				actionListener="#{frmPredio.ingresarPredio() }" update="@form" />
+		</p:panel>
+	</h:form>
+</body>
+</html>

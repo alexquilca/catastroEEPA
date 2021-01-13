@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body onload="#{frmModeloMedidor.inicializarmodelo_medidor()}">
+	<h:form>
+		<p:growl showDetail="true" sticky="true" />
+		<p:panel id="pnIngreso" header="INGRESO DATOS DEL MODELO MEDIDOR">
+
+			<p:panelGrid columns="2">
+
+				<p:outputLabel value="Marca " />
+				<p:inputText value="#{frmModeloMedidor.objComModeloMedidor.marca}" />
+
+				<p:outputLabel value="Modelo" />
+				<p:inputText value="#{frmModeloMedidor.objComModeloMedidor.modelo}" />
+
+				<p:outputLabel value="Tipo de medidor" />
+				<p:inputText value="#{frmModeloMedidor.objComModeloMedidor.tipoDeMedidor}" />
+				
+				<p:outputLabel value="Descripcion" />
+				<p:textEditor value="#{frmModeloMedidor.objComModeloMedidor.descripcion}" />
+				
+			</p:panelGrid>
+			<p:commandButton value="INGRESAR"
+				actionListener="#{frmModeloMedidor.ingresarModeloMedidor()}"
+				update="@form" />
+		</p:panel>
+	</h:form>
+</body>
+</html>
